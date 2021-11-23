@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Etats des Projets - Ajouter un projet</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+  <link rel="stylesheet" href="/css/css.css">
+</head>
+
+<body>
+  <div th:replace="fragments/navbar :: navbar"></div>
+
+  <div class="container">
+    <h2>Créer un projet</h2>
+    <form th:action="@{/addProject}" th:object="${projectForm}" method="POST">
+
+      <h3>Informations du projet</h3>      
+      <div class="form-group">
+        <label for="projectId">ID GitLab du projet:</label>
+        <input type="number" class="form-control" placeholder="Entrer l'ID du projet" id="projectId"
+          th:field="*{projectId}">
+      </div>
+      <div class="form-group">
+        <label for="name">Nom du projet:</label>
+        <input type="text" class="form-control" placeholder="Entrer le nom du projet" id="name"
+          th:field="*{projectName}">
+      </div>
+      <div class="form-group">
+        <label for="course">Matière:</label>
+        <input type="text" class="form-control" placeholder="Entrer la matière" id="course" th:field="*{course}">
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" placeholder="Entrer la description" id="description"
+          th:field="*{projectDescription}">
+      </div>
+      <div class="form-group">
+      	<label for="gitRoot">GitLab du projet:</label>
+      	<select class="form-select form-control" id="gitRoot"  th:field="*{gitRoot}">
+		  <option selected value="gitlab.com">gitlab.com</option>
+		  <option value="gitlab-etu.fil.univ-lille1.fr">gitlab-etu.fil.univ-lille1.fr (Analyze Sonarqube non disponible)</option>
+		  <option value="gitlab.univ-lille.fr">gitlab.univ-lille.fr (Analyse Sonarqube non disponible)</option>
+		</select>
+      </div>
+      <div class="form-group">
+        <label for="gitUrl">URL git:</label>
+        <input type="text" class="form-control" placeholder="Entrer l'url git" id="gitUrl" th:field="*{gitUrl}">
+      </div>
+      <div class="form-group">
+        <label for="token">Token d'accès:</label>
+        <input type="text" class="form-control" placeholder="Entrer le token d'accès" id="token" th:field="*{token}">
+      </div>
+
+      <h3>Informations du professeur</h3>
+      <div class="form-group">
+        <label for="profFirstName">Prénom du professeur:</label>
+        <input type="text" class="form-control" placeholder="Entrer le prénom du professeur" id="profFirstName"
+          th:field="*{profFirstName}">
+        <label for="profSurname">Nom du professeur:</label>
+        <input type="text" class="form-control" placeholder="Entrer le nom du professeur" id="profSurname"
+          th:field="*{profSurname}">
+        <label for="profMail">Mail du professeur:</label>
+        <input type="email" class="form-control" placeholder="Entrer le Mail du professeur" id="profMail"
+          th:field="*{profMail}">
+      </div>
+
+      <h3>Informations du premier étudiant</h3>
+      <div class="form-group">
+        <label for="student1FirstName">Prénom du premier étudiant:</label>
+        <input type="text" class="form-control" placeholder="Entrer le prénom du premier étudiant"
+          id="student1FirstName" th:field="*{student1FirstName}">
+        <label for="student1Surname">Nom du premier étudiant:</label>
+        <input type="text" class="form-control" placeholder="Entrer le nom du premier étudiant" id="student1Surname"
+          th:field="*{student1Surname}">
+        <label for="student1Mail">Mail du premier étudiant:</label>
+        <input type="email" class="form-control" placeholder="Entrer le mail du premier étudiant" id="student1Mail"
+          th:field="*{student1Mail}">
+        <label for="student1Group">Groupe du premier étudiant:</label>
+        <input type="text" class="form-control" placeholder="Entrer le groupe du premier étudiant" id="student1Group"
+          th:field="*{student1Group}">
+      </div>
+
+      <h3>Informations du deuxième étudiant</h3>
+      <div class="form-group">
+        <label for="student2FirstName">Prénom du deuxième étudiant:</label>
+        <input type="text" class="form-control" placeholder="Entrer le prénom du deuxième étudiant"
+          id="student2FirstName" th:field="*{student2FirstName}">
+        <label for="student2Surname">Nom du deuxième étudiant:</label>
+        <input type="text" class="form-control" placeholder="Entrer le nom du deuxième étudiant" id="student2Surname"
+          th:field="*{student2Surname}">
+        <label for="student2Mail">Mail du deuxième étudiant:</label>
+        <input type="email" class="form-control" placeholder="Entrer le mail du deuxième étudiant" id="student2Mail"
+          th:field="*{student2Mail}">
+        <label for="student2Group">Groupe du deuxième étudiant:</label>
+        <input type="text" class="form-control" placeholder="Entrer le groupe du deuxième étudiant" id="student2Group"
+          th:field="*{student2Group}">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Valider</button>
+    </form>
+  </div>
+
+  <br />
+
+  <!-- Check if errorMessage is not null and not empty -->
+
+  <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;">
+    ...
+  </div>
+
+</body>
+
+</html>
